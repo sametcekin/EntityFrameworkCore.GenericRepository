@@ -153,5 +153,12 @@ public class UserController : ControllerBase
 }
 ```
 
+#####4.DI container Registration
+```csharp
+...
+services.AddTransient<IRepository<User>, Repository<ApplicationDbContext, User>>();
+...
+```
+
 Finally we did it. It will be continued to develop. You can fork. 
 I will make a youtube video.
