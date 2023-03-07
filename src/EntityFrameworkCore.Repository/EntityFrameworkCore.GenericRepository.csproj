@@ -9,13 +9,13 @@
     <PackageProjectUrl>https://github.com/sametcekin/EntityFrameworkCore.GenericRepository</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sametcekin/EntityFrameworkCore.GenericRepository</RepositoryUrl>
     <PackageId>EFCore.Data.Repository</PackageId>
-    <Description>Entity Framework Core </Description>
+    <Description>It is written for ef core when using repository the best generic way.</Description>
     <PackageTags>ef;efcore;repository;genericrepository;efcoregenericrepository;</PackageTags>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<FileVersion>1.0.0.0</FileVersion>
 	<NeutralLanguage>en-US</NeutralLanguage>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
   </PropertyGroup>
 
 	<ItemGroup>
