@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -12,20 +12,17 @@
     <Description>It is written for ef core when using repository the best generic way.</Description>
     <PackageTags>ef;efcore;repository;genericrepository;efcoregenericrepository;</PackageTags>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<AssemblyVersion>2.0.0.0</AssemblyVersion>
 	<FileVersion>1.0.0.0</FileVersion>
 	<NeutralLanguage>en-US</NeutralLanguage>
-	<Version>1.0.4</Version>
-	<PackageReadmeFile></PackageReadmeFile>
+	<Version>1.0.5</Version>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageReleaseNotes></PackageReleaseNotes>
 	<PackAsTool>False</PackAsTool>
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.24" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.24">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+		<None Include="docs\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
