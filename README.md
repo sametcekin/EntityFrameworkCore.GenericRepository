@@ -6,9 +6,9 @@ Repository written in C# for EntityFrameworkCore.
 I can guess that you are encountering more than one repository. You can simply use the repository I have prepared in your projects. You can use directly generic repository while injecting in ctor. Since it's already generic, you only need to provide an entity. Let's setup it together.
 
 
-###How to setup?
+### How to setup?
 
-#####1. Creating Entity
+##### 1. Creating Entity
 
 ```csharp
     public class User
@@ -20,7 +20,7 @@ I can guess that you are encountering more than one repository. You can simply u
     }
 ```
 
-#####2.Creating Basic DbContext
+##### 2.Creating Basic DbContext
 
 ```csharp
 public class ApplicationDbContext : DbContext
@@ -49,7 +49,7 @@ public class ApplicationDbContext : DbContext
 }
 ```
 
-#####3.Creating Controller and Injecting Repository
+##### 3.Creating Controller and Injecting Repository
 
 ```csharp
 [Route("api/[controller]")]
@@ -65,7 +65,7 @@ public class UserController : ControllerBase
 }
 ```
 
-#####3.Creating Endpoint and Using Repository with CRUD Operation
+##### 4.Creating Endpoint and Using Repository with CRUD Operation
 
 ```csharp
 [Route("api/[controller]")]
@@ -153,7 +153,7 @@ public class UserController : ControllerBase
 }
 ```
 
-#####4.DI container Registration
+##### 5.DI container Registration
 ```csharp
 ...
 services.AddTransient<IRepository<User>, Repository<ApplicationDbContext, User>>();
