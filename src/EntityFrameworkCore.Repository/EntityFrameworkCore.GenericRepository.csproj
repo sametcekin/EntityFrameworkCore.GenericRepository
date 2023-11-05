@@ -16,12 +16,8 @@
 	<FileVersion>1.0.0.0</FileVersion>
 	<NeutralLanguage>en-US</NeutralLanguage>
 	<Version>1.0.4</Version>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<PackageReleaseNotes>#functional-improvement
-AddAndReturnEntityAsync() is removed.
-Range methods are changed to overridable. Like AddRangeAsync()=&gt; AddAsync()
-Delete methods are deleting data hardly.
-SoftDelete methods are created for soft delete. But classes should be assignable from ISoftDelete interface.</PackageReleaseNotes>
+	<PackageReadmeFile></PackageReadmeFile>
+	<PackageReleaseNotes></PackageReleaseNotes>
 	<PackAsTool>False</PackAsTool>
   </PropertyGroup>
 
