@@ -10,40 +10,67 @@ namespace EFCoreGenericRepository
     /// class : reference type
     public interface IRepository<T> where T : class, new()
     {
+        #region add
+
         void Add(T entity);
+        void Add(IEnumerable<T> entities);
         Task AddAsync(T entity, CancellationToken token = default);
-        Task<T> AddAndReturnEntityAsync(T entity, CancellationToken token = default);
-        void AddRange(IEnumerable<T> entities);
-        Task AddRangeAsync(IEnumerable<T> entities, CancellationToken token = default);
+        Task AddAsync(IEnumerable<T> entities, CancellationToken token = default);
+
+        #endregion
+
+        #region update
+
         void Update(T entity);
+        void Update(IEnumerable<T> entities);
         Task UpdateAsync(T entity, CancellationToken token = default);
-        void UpdateRange(IEnumerable<T> entities);
-        Task UpdateRangeAsync(IEnumerable<T> entities, CancellationToken token = default);
+        Task UpdateAsync(IEnumerable<T> entities, CancellationToken token = default);
+
+        #endregion
+
+        #region delete
+
         void Delete(T entity);
+        void Delete(IEnumerable<T> entities);
         Task DeleteAsync(T entity, CancellationToken token = default);
-        void DeleteRange(IEnumerable<T> entities);
-        Task DeleteRangeAsync(IEnumerable<T> entities, CancellationToken token = default);
+        Task DeleteAsync(IEnumerable<T> entities, CancellationToken token = default);
 
-        T GetFirstOrDefault(Expression<Func<T, bool>> predicate = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
+        #endregion
 
-        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
+        #region soft delete
 
-        List<T> GetList(Expression<Func<T, bool>> predicate = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
+        void SoftDelete(T entity);
+        void SoftDelete(IEnumerable<T> entity);
+        Task SoftDeleteAsync(T entity, CancellationToken token = default);
+        Task SoftDeleteAsync(IEnumerable<T> entity, CancellationToken token = default);
 
-        Task<List<T>> GetListAsync(Expression<Func<T, bool>> predicate = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        #endregion
+
+        T GetFirstOrDefault(
+            Expression<Func<T, bool>>? predicate = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            bool disableTracking = true);
+        Task<T> GetFirstOrDefaultAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            bool disableTracking = true);
+        List<T> GetList(
+            Expression<Func<T, bool>>? predicate = null,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            bool disableTracking = true);
+        Task<List<T>> GetListAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             bool disableTracking = true,
             CancellationToken cancellationToken = default);
-
-        IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
+        IQueryable<T> GetQueryable(
+            Expression<Func<T, bool>>? predicate = null,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            bool disableTracking = true);
     }
 }
