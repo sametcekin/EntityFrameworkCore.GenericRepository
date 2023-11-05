@@ -72,69 +72,61 @@ namespace EFCoreGenericRepository
 
         public void Delete(TEntity entity)
         {
-            _dbSet.Remove(entity);
+            if(entity is ISoftDelete softDeleteEntity)
+            {
+                softDeleteEntity.IsDeleted = true;
+                _dbSet.Update(entity);
+            }
+            else
+            {
+                _dbSet.Remove(entity);
+            }
             _context.SaveChanges();
         }
         public void Delete(IEnumerable<TEntity> entities)
         {
-            _dbSet.RemoveRange(entities);
+            if(entities.FirstOrDefault() is ISoftDelete softDeleteEntity)
+            {
+                foreach (var entity in entities)
+                {
+                    softDeleteEntity.IsDeleted = true;
+                    _dbSet.Update(entity);
+                }
+            }
+            else
+            {
+                _dbSet.RemoveRange(entities);
+            }
             _context.SaveChanges();
         }
         public async Task DeleteAsync(TEntity entity, CancellationToken token = default)
         {
-            _dbSet.Remove(entity);
+            if(entity is ISoftDelete softDeleteEntity)
+            {
+                softDeleteEntity.IsDeleted = true;
+                _dbSet.Update(entity);
+            }
+            else
+            {
+                _dbSet.Remove(entity);
+            }
             await _context.SaveChangesAsync(token);
         }
         public async Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken token = default)
         {
-            _dbSet.RemoveRange(entities);
+            if(entities.FirstOrDefault() is ISoftDelete softDeleteEntity)
+            {
+                foreach (var entity in entities)
+                {
+                    softDeleteEntity.IsDeleted = true;
+                    _dbSet.Update(entity);
+                }
+            }
+            else
+            {
+                _dbSet.RemoveRange(entities);
+            }
             await _context.SaveChangesAsync(token);
-        }
-        #endregion
-
-        #region soft delete
-
-        public void SoftDelete(TEntity entity)
-        {
-            if (entity is ISoftDelete softDeleteEntity)
-            {
-                softDeleteEntity.IsDeleted = true;
-                _dbSet.Update(entity);
-                _context.SaveChanges();
-            }
-        }
-        public void SoftDelete(IEnumerable<TEntity> entities)
-        {
-            if (entities.FirstOrDefault() is ISoftDelete softDeleteEntity)
-            {
-                foreach (var entity in entities)
-                {
-                    softDeleteEntity.IsDeleted = true;
-                    _dbSet.Update(entity);
-                }
-                _context.SaveChanges();
-            }
-        }
-        public async Task SoftDeleteAsync(TEntity entity, CancellationToken token = default)
-        {
-            if (entity is ISoftDelete softDeleteEntity)
-            {
-                softDeleteEntity.IsDeleted = true;
-                _dbSet.Update(entity);
-                await _context.SaveChangesAsync(token);
-            }
-        }
-        public async Task SoftDeleteAsync(IEnumerable<TEntity> entities, CancellationToken token = default)
-        {
-            if (entities.FirstOrDefault() is ISoftDelete softDeleteEntity)
-            {
-                foreach (var entity in entities)
-                {
-                    softDeleteEntity.IsDeleted = true;
-                    _dbSet.Update(entity);
-                }
-                await _context.SaveChangesAsync(token);
-            }
         }
 
         #endregion

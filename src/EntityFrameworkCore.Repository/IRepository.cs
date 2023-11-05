@@ -37,15 +37,6 @@ namespace EFCoreGenericRepository
 
         #endregion
 
-        #region soft delete
-
-        void SoftDelete(T entity);
-        void SoftDelete(IEnumerable<T> entity);
-        Task SoftDeleteAsync(T entity, CancellationToken token = default);
-        Task SoftDeleteAsync(IEnumerable<T> entity, CancellationToken token = default);
-
-        #endregion
-
         T GetFirstOrDefault(
             Expression<Func<T, bool>>? predicate = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
