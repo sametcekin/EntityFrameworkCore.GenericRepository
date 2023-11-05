@@ -1,5 +1,4 @@
-﻿using EntityFrameworkCore.GenericRepository.Base;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
@@ -58,7 +57,7 @@ namespace EFCoreGenericRepository
         public async Task UpdateAsync(TEntity entity, CancellationToken token = default)
         {
             _dbSet.Update(entity);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(token);
         }
         public async Task UpdateAsync(IEnumerable<TEntity> entities, CancellationToken token = default)
         {
