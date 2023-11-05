@@ -72,9 +72,11 @@ namespace EFCoreGenericRepository
 
         public void Delete(TEntity entity)
         {
-            if(entity is ISoftDelete softDeleteEntity)
+            var properties = entity.GetType().GetProperties();
+            if (properties.Any(x => x.Name.Contains("IsDeleted")))
             {
-                softDeleteEntity.IsDeleted = true;
+                var propertyInfo = properties.Where(x => x.Name == "IsDeleted").First();
+                propertyInfo.SetValue(entity, Convert.ChangeType(true, propertyInfo.PropertyType), null);
                 _dbSet.Update(entity);
             }
             else
@@ -85,11 +87,13 @@ namespace EFCoreGenericRepository
         }
         public void Delete(IEnumerable<TEntity> entities)
         {
-            if(entities.FirstOrDefault() is ISoftDelete softDeleteEntity)
+            var properties = entities.First().GetType().GetProperties();
+            if (properties.Any(x => x.Name.Contains("IsDeleted")))
             {
+                var propertyInfo = properties.Where(x => x.Name == "IsDeleted").First();
                 foreach (var entity in entities)
                 {
-                    softDeleteEntity.IsDeleted = true;
+                    propertyInfo.SetValue(entity, Convert.ChangeType(true, propertyInfo.PropertyType), null);
                     _dbSet.Update(entity);
                 }
             }
@@ -99,11 +103,14 @@ namespace EFCoreGenericRepository
             }
             _context.SaveChanges();
         }
+
         public async Task DeleteAsync(TEntity entity, CancellationToken token = default)
         {
-            if(entity is ISoftDelete softDeleteEntity)
+            var properties = entity.GetType().GetProperties();
+            if (properties.Any(x => x.Name.Contains("IsDeleted")))
             {
-                softDeleteEntity.IsDeleted = true;
+                var propertyInfo = properties.Where(x => x.Name == "IsDeleted").First();
+                propertyInfo.SetValue(entity, Convert.ChangeType(true, propertyInfo.PropertyType), null);
                 _dbSet.Update(entity);
             }
             else
@@ -114,11 +121,13 @@ namespace EFCoreGenericRepository
         }
         public async Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken token = default)
         {
-            if(entities.FirstOrDefault() is ISoftDelete softDeleteEntity)
+            var properties = entities.First().GetType().GetProperties();
+            if (properties.Any(x => x.Name.Contains("IsDeleted")))
             {
+                var propertyInfo = properties.Where(x => x.Name == "IsDeleted").First();
                 foreach (var entity in entities)
                 {
-                    softDeleteEntity.IsDeleted = true;
+                    propertyInfo.SetValue(entity, Convert.ChangeType(true, propertyInfo.PropertyType), null);
                     _dbSet.Update(entity);
                 }
             }
