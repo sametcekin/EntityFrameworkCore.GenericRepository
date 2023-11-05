@@ -15,12 +15,26 @@
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<FileVersion>1.0.0.0</FileVersion>
 	<NeutralLanguage>en-US</NeutralLanguage>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageReleaseNotes>#functional-improvement
+AddAndReturnEntityAsync() is removed.
+Range methods are changed to overridable. Like AddRangeAsync()=&gt; AddAsync()
+Delete methods are deleting data hardly.
+SoftDelete methods are created for soft delete. But classes should be assignable from ISoftDelete interface.</PackageReleaseNotes>
+	<PackAsTool>False</PackAsTool>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.24" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.24">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
